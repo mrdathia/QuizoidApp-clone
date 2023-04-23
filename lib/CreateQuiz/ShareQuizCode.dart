@@ -54,7 +54,7 @@ class ShareQuizCode extends StatelessWidget {
                         },
                       )
                     ),
-                    RaisedButton(
+                    TextButton(
                       child: Text('Share'),
                       onPressed: (){
                         Share.share('check out my website https://example.com', subject: 'Look what I made!');

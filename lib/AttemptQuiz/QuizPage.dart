@@ -102,7 +102,7 @@ class _QuizPageState extends State<QuizPage> {
                       child: widget.flag <= 1
                           ? widget.flag == 0
                               ? Center(
-                                  child: RaisedButton(
+                                  child: TextButton(
                                       child: Text('Start Quiz'),
                                       onPressed: () {
                                         setState(() {
@@ -143,7 +143,7 @@ class _QuizPageState extends State<QuizPage> {
                     width: constraints.maxWidth,
                     alignment: Alignment.center,
                     child:
-                        RaisedButton(
+                        TextButton(
                           child: Text('Submit'),
                           onPressed: ()=>submit(),                        
                         ),

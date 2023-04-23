@@ -40,7 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       content: Text('Updating...Please Wait!',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
       backgroundColor: Theme.of(context).primaryColor,
     );
-    Scaffold.of(_context).showSnackBar(mySnackbar);
+    ScaffoldMessenger.of(_context).showSnackBar(mySnackbar);
     try {
       if (_pickedImage != null) {
         final ref = FirebaseStorage.instance.ref().child('User_Images').child(widget._userId + 'jpg');
@@ -70,7 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             .update({'About': widget._about});
       }
     } catch(err){
-      Scaffold.of(_context).showSnackBar(SnackBar(content: Text('$err',style: TextStyle(color:Colors.white),),backgroundColor: Colors.red,));
+      ScaffoldMessenger.of(_context).showSnackBar(SnackBar(content: Text('$err',style: TextStyle(color:Colors.white),),backgroundColor: Colors.red,));
     }
   }
 
@@ -85,13 +85,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    FlatButton(
+                    TextButton(
                         child: Text('Take New Photo'),
                         onPressed: () {
                           _source = ImageSource.camera;
                           Navigator.of(context).pop();
                         }),
-                    FlatButton(
+                    TextButton(
                         child: Text('Choose Existing Photo'),
                         onPressed: () {
                           _source = ImageSource.gallery;

@@ -76,7 +76,7 @@ class _CreateQuizPageState extends State<CreateQuizPage> {
         );
 
       if (questions.length == options.length && answers.isNotEmpty && quizTitle.isNotEmpty) {
-        Scaffold.of(_context).showSnackBar(mySnackbar1);
+        ScaffoldMessenger.of(_context).showSnackBar(mySnackbar1);
 
         try {
           DocumentReference doc = await FirebaseFirestore.instance.collection('Quiz').add({
@@ -95,13 +95,13 @@ class _CreateQuizPageState extends State<CreateQuizPage> {
            });
          });
         } catch (err) {
-          Scaffold.of(_context).showSnackBar(
+          ScaffoldMessenger.of(_context).showSnackBar(
             SnackBar(content: Text('$err',style: TextStyle(color:Colors.white)),backgroundColor: Colors.red,)
           );
         }
       }
       else{
-        Scaffold.of(_context).showSnackBar(mySnackbar2);
+        ScaffoldMessenger.of(_context).showSnackBar(mySnackbar2);
       }
     }
 
@@ -180,7 +180,7 @@ class _CreateQuizPageState extends State<CreateQuizPage> {
                       width: constraints.maxWidth,
                       alignment: Alignment.topLeft,
                       child:
-                          RaisedButton(child: Text('Create'), onPressed: () =>createQuiz(context)),
+                          TextButton(child: Text('Create'), onPressed: () =>createQuiz(context)),
                     )
                   ],
                 );

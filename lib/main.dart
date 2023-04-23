@@ -4,24 +4,22 @@ import 'Authentication/Auth_Screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Quizoid',
       theme: ThemeData(
         primaryColor: Colors.lightBlue[900],
@@ -32,13 +30,11 @@ class _MyAppState extends State<MyApp> {
       ),
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context,userSnapshot){
-          if(userSnapshot.connectionState == ConnectionState.waiting)
-          {
+        builder: (context, userSnapshot) {
+          if (userSnapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           }
-          if(userSnapshot.hasData)
-          {
+          if (userSnapshot.hasData) {
             return HomeScreen(userSnapshot.data.uid.toString().trim());
           }
           return AuthScreen();
@@ -47,4 +43,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-

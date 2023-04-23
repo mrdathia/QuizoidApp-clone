@@ -20,7 +20,7 @@ class _StartQuizState extends State<StartQuiz> {
     if (isValid) {
        _formKey.currentState.save();
 
-      Scaffold.of(ctx).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
           content: Text('Fetching data...please wait !'),
           backgroundColor: Theme.of(ctx).primaryColor));
 
@@ -38,13 +38,13 @@ class _StartQuizState extends State<StartQuiz> {
         });
 
         if(flag == 0){
-          Scaffold.of(ctx).showSnackBar(SnackBar(content: Text('Invalid Quiz code'),backgroundColor: Theme.of(ctx).errorColor));
+          ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(content: Text('Invalid Quiz code'),backgroundColor: Theme.of(ctx).colorScheme.error));
         }
         else if(flag == 1){
           widget.throwOnQuizPage(widget.quizCode);
         }
       } catch (err) {
-        Scaffold.of(ctx).showSnackBar(SnackBar(content: Text('${err.code.toString()}'),backgroundColor: Theme.of(ctx).errorColor));
+        ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(content: Text('${err.code.toString()}'),backgroundColor: Theme.of(ctx).colorScheme.error));
       }
     }
   }
@@ -78,7 +78,7 @@ class _StartQuizState extends State<StartQuiz> {
               SizedBox(
                 height: 10,
               ),
-              RaisedButton(
+              TextButton(
                   child: Text('Start'), onPressed: () => checkCode(context))
             ],
           ),
